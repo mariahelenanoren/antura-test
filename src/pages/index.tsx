@@ -1,6 +1,11 @@
 import { GetStaticProps } from 'next';
 
 import { fetchUser, User } from '../helpers';
+import { PageLayout, UserPage } from '~/components';
+
+interface IHome {
+  user: User;
+}
 
 export const getStaticProps = async () => {
   try {
@@ -15,10 +20,10 @@ export const getStaticProps = async () => {
   }
 };
 
-interface IHome {
-  user: User;
-}
-
-export default function Home({ user }: IHome) {
-  return <></>;
+export default function User({ user }: IHome) {
+  return (
+    <PageLayout>
+      <UserPage user={user} />
+    </PageLayout>
+  );
 }
