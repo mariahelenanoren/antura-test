@@ -1,11 +1,29 @@
+html, body {
+  height: 100%;
+}
+
 html,
-body,
-#__next {
+body {
     min-height: 100%;
     width: 100%;
     padding: 0;
     margin: 0;
     background-color: #FBFAFA;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+#__next {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
 }
 
 * {

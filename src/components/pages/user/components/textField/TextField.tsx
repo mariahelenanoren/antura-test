@@ -1,4 +1,4 @@
-import { Typography, Grid, useTheme } from '@mui/material';
+import { Typography, useTheme, Skeleton } from '@mui/material';
 
 import { TextContainer } from './styles';
 
@@ -11,7 +11,7 @@ export const TextField = ({ value }: ITextField) => {
 
   return (
     <TextContainer>
-      <Typography color={theme.palette.grey[700]}>{value}</Typography>
+      <Typography color={theme.palette.grey[600]}>{value}</Typography>
     </TextContainer>
   );
 };
