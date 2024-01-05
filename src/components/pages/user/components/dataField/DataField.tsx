@@ -1,23 +1,17 @@
-import { Typography, Grid, useTheme } from '@mui/material';
-import { ValueContainer } from './styles';
+import { PropsWithChildren } from 'react';
+import { Typography, Grid } from '@mui/material';
 
-interface IDataField {
+interface IDataField extends PropsWithChildren {
   label: string;
-  value: string | number;
 }
 
-export const DataField = ({ label, value }: IDataField) => {
-  const theme = useTheme();
+export const DataField = ({ label, children }: IDataField) => {
   return (
-    <Grid container direction="column" spacing={1}>
+    <Grid container item direction="column" xs={12} sm={6} md={4} spacing={1}>
       <Grid item>
         <Typography fontWeight={600}>{label}</Typography>
       </Grid>
-      <Grid item>
-        <ValueContainer>
-          <Typography color={theme.palette.grey[700]}>{value}</Typography>
-        </ValueContainer>
-      </Grid>
+      <Grid item>{children}</Grid>
     </Grid>
   );
 };
