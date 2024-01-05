@@ -38,12 +38,17 @@ interface ID {
 }
 
 interface Location {
-  street: string;
+  street: Street;
   city: string;
   state: string;
   postcode: string;
   coordinates: Coordinates;
   timezone: Timezone;
+}
+
+interface Street {
+  name: string;
+  number: number;
 }
 
 interface Coordinates {
