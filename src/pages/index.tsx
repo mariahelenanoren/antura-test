@@ -1,7 +1,24 @@
-import { Inter } from 'next/font/google';
+import { GetStaticProps } from 'next';
 
-const inter = Inter({ subsets: ['latin'] });
+import { fetchUser, User } from '../helpers';
 
-export default function Home() {
+export const getStaticProps = async () => {
+  try {
+    const user = await fetchUser();
+    return {
+      props: {
+        user,
+      },
+    };
+  } catch {
+    return { notFound: true };
+  }
+};
+
+interface IHome {
+  user: User;
+}
+
+export default function Home({ user }: IHome) {
   return <></>;
 }
