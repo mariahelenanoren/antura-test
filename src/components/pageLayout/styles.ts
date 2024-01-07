@@ -1,6 +1,6 @@
 import { Box, styled } from '@mui/material';
 
-export const Layout = styled(Box)(() => ({
+export const Layout = styled(Box)(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
@@ -9,6 +9,9 @@ export const Layout = styled(Box)(() => ({
   maxWidth: 1200,
   padding: '60px 40px',
   margin: 'auto',
+  [theme.breakpoints.down('md')]: {
+    padding: '20px',
+  },
 }));
 
 export const Paper = styled(Box)(({ theme }) => ({
@@ -19,4 +22,7 @@ export const Paper = styled(Box)(({ theme }) => ({
   padding: '60px 50px',
   backgroundColor: theme.palette.common.white,
   border: `1px solid ${theme.palette.grey[200]}`,
+  [theme.breakpoints.down('md')]: {
+    padding: '25px',
+  },
 }));

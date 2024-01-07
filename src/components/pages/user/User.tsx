@@ -2,9 +2,12 @@ import React, { useMemo } from 'react';
 import {
   Typography,
   Grid,
+  Box,
   Button,
   CircularProgress,
   Link,
+  useTheme,
+  useMediaQuery,
 } from '@mui/material';
 
 import { User } from '~/helpers';
@@ -33,6 +36,8 @@ enum RenderType {
 }
 
 export const UserPage = ({ user }: IUserPage) => {
+  const theme = useTheme();
+  const smallScreen = useMediaQuery(theme.breakpoints.down('md'));
   const { user: fetchedUser, getUser, loading, error } = useUserData();
 
   const currentUser = useMemo(() => {
@@ -93,36 +98,38 @@ export const UserPage = ({ user }: IUserPage) => {
   };
 
   return (
-    <Grid container direction="column" spacing={10} flex={1}>
-      <Grid container item justifyContent="space-between">
-        <Grid container item direction="column" xs="auto" spacing={2}>
-          <Grid item>
-            <Typography variant="h6">User information</Typography>
-          </Grid>
-          <Grid item>
-            <Typography>
-              User metadata fetched from{' '}
-              <Link href="https://randomuser.me">https://randomuser.me/</Link>
-            </Typography>
-          </Grid>
-        </Grid>
+    <Box flex={1} display="flex" flexDirection="column" rowGap={10}>
+      <Box
+        display="flex"
+        flexDirection={smallScreen ? 'column-reverse' : 'row'}
+        alignItems="flex-start"
+        justifyContent="space-between"
+        rowGap={4}
+      >
+        <Box display="flex" flexDirection="column" rowGap={2}>
+          <Typography variant="h6">User information</Typography>
+          <Typography>
+            User metadata fetched from{' '}
+            <Link href="https://randomuser.me">https://randomuser.me/</Link>
+          </Typography>
+        </Box>
 
-        <Grid item>
+        <Box alignSelf={smallScreen ? 'flex-end' : 'flex-start'}>
           {loading && <CircularProgress size={12} sx={{ marginRight: 2 }} />}
           <Button onClick={getUser} variant="outlined">
             Get new user
           </Button>
-        </Grid>
-      </Grid>
+        </Box>
+      </Box>
 
       {error ? (
-        <ErrorContainer item xs>
+        <ErrorContainer>
           <ErrorAlert description="We were unable to get the user" />
         </ErrorContainer>
       ) : (
-        <Grid container item spacing={10}>
+        <Box display="flex" flexDirection="column" rowGap={10}>
           {Object.entries(userData).map(([title, data], index) => (
-            <Grid container item spacing={4} key={index}>
+            <Grid container spacing={4} key={index}>
               {title && (
                 <Grid item>
                   <Typography
@@ -147,8 +154,8 @@ export const UserPage = ({ user }: IUserPage) => {
               </Grid>
             </Grid>
           ))}
-        </Grid>
+        </Box>
       )}
-    </Grid>
+    </Box>
   );
 };
