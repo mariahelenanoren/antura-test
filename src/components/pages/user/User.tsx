@@ -110,7 +110,9 @@ export const UserPage = ({ user }: IUserPage) => {
           <Typography variant="h6">User information</Typography>
           <Typography>
             User metadata fetched from{' '}
-            <Link href="https://randomuser.me">https://randomuser.me/</Link>
+            <Link href="https://randomuser.me" sx={{ wordBreak: 'break-all' }}>
+              https://randomuser.me/
+            </Link>
           </Typography>
         </Box>
 
