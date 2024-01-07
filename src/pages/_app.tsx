@@ -10,6 +10,9 @@ const theme = createTheme({
   typography: {
     fontFamily: inter.style.fontFamily,
   },
+  shape: {
+    borderRadius: 0,
+  },
 });
 
 export default function App({ Component, pageProps }: AppProps) {
