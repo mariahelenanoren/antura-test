@@ -10,3 +10,13 @@ export const Layout = styled(Box)(() => ({
   padding: '60px 40px',
   margin: 'auto',
 }));
+
+export const Paper = styled(Box)(({ theme }) => ({
+  display: 'flex',
+  flexDirection: 'column',
+  height: '100%',
+  width: '100%',
+  padding: '60px 50px',
+  backgroundColor: theme.palette.common.white,
+  border: `1px solid ${theme.palette.grey[200]}`,
+}));

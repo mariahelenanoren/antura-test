@@ -7,7 +7,7 @@ interface IErrorAlert {
 export const ErrorAlert = ({ description }: IErrorAlert) => {
   return (
     <Alert severity="error" variant="outlined" sx={{ maxWidth: 'fit-content' }}>
-      <AlertTitle> An error occured</AlertTitle>
+      <AlertTitle>An error occured</AlertTitle>
       {description}
     </Alert>
   );

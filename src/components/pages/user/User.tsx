@@ -1,11 +1,17 @@
-import React, { useEffect, useMemo } from 'react';
-import { Typography, Grid, Button, CircularProgress } from '@mui/material';
-import Link from 'next/link';
+import React, { useMemo } from 'react';
+import {
+  Typography,
+  Grid,
+  Button,
+  CircularProgress,
+  Link,
+} from '@mui/material';
 
 import { User } from '~/helpers';
 import { useUserData } from '~/hooks';
-import { RootContainer } from './styles';
+import { ErrorAlert } from '~/components';
 import { DataField, TextField, Thumbnail } from './components';
+import { ErrorContainer } from './styles';
 
 interface IUserPage {
   user: User;
@@ -86,59 +92,63 @@ export const UserPage = ({ user }: IUserPage) => {
     },
   };
 
-  if (error) {
-    return (
-      <RootContainer minHeight="100%">
-        <Typography>Error</Typography>
-      </RootContainer>
-    );
-  }
-
   return (
-    <RootContainer>
-      <Grid container direction="column" spacing={10}>
-        <Grid container item justifyContent="space-between">
+    <Grid container direction="column" spacing={10} flex={1}>
+      <Grid container item justifyContent="space-between">
+        <Grid container item direction="column" xs="auto" spacing={2}>
           <Grid item>
             <Typography variant="h6">User information</Typography>
-            <Typography>
-              User metadata fetched from{' '}
-              <Link href="https://randomuser.me/">https://randomuser.me/</Link>
-            </Typography>
           </Grid>
           <Grid item>
-            {loading && <CircularProgress size={12} sx={{ marginRight: 2 }} />}
-            <Button onClick={getUser} variant="outlined">
-              Get new user
-            </Button>
+            <Typography>
+              User metadata fetched from{' '}
+              <Link href="https://randomuser.me">https://randomuser.me/</Link>
+            </Typography>
           </Grid>
         </Grid>
-        {Object.entries(userData).map(([title, data], index) => (
-          <Grid container item spacing={4} key={index}>
-            {title && (
-              <Grid item>
-                <Typography
-                  textTransform="capitalize"
-                  fontSize={18}
-                  fontWeight={600}
-                >
-                  {title}
-                </Typography>
-              </Grid>
-            )}
-            <Grid container item spacing={4}>
-              {Object.entries(data).map(([label, { value, type }], index) => (
-                <DataField label={label} key={index}>
-                  {type === RenderType.IMAGE ? (
-                    <Thumbnail src={value as string} />
-                  ) : (
-                    <TextField value={value} />
-                  )}
-                </DataField>
-              ))}
-            </Grid>
-          </Grid>
-        ))}
+
+        <Grid item>
+          {loading && <CircularProgress size={12} sx={{ marginRight: 2 }} />}
+          <Button onClick={getUser} variant="outlined">
+            Get new user
+          </Button>
+        </Grid>
       </Grid>
-    </RootContainer>
+
+      {error ? (
+        <ErrorContainer item xs>
+          <ErrorAlert description="We were unable to get the user" />
+        </ErrorContainer>
+      ) : (
+        <Grid container item spacing={10}>
+          {Object.entries(userData).map(([title, data], index) => (
+            <Grid container item spacing={4} key={index}>
+              {title && (
+                <Grid item>
+                  <Typography
+                    textTransform="capitalize"
+                    fontSize={18}
+                    fontWeight={500}
+                  >
+                    {title}
+                  </Typography>
+                </Grid>
+              )}
+              <Grid container item spacing={4}>
+                {Object.entries(data).map(([label, { value, type }], index) => (
+                  <DataField label={label} key={index}>
+                    {type === RenderType.IMAGE ? (
+                      <Thumbnail src={value as string} />
+                    ) : (
+                      <TextField value={value} />
+                    )}
+                  </DataField>
+                ))}
+              </Grid>
+            </Grid>
+          ))}
+        </Grid>
+      )}
+    </Grid>
   );
 };

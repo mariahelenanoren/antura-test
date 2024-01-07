@@ -1,8 +1,7 @@
-import { styled, Box } from '@mui/material';
+import { Grid, styled } from '@mui/material';
 
-export const RootContainer = styled(Box)(({ theme }) => ({
-  width: '100%',
-  padding: '60px 50px',
-  backgroundColor: theme.palette.common.white,
-  border: `1px solid ${theme.palette.grey[200]}`,
+export const ErrorContainer = styled(Grid)(() => ({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
 }));

@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+
 import { fetchUser, User } from '~/helpers';
 
 export const useUserData = () => {

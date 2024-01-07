@@ -1,17 +1,17 @@
-import { Typography, useTheme, Skeleton } from '@mui/material';
-
-import { TextContainer } from './styles';
+import { TextField as MuiTextField } from '@mui/material';
 
 interface ITextField {
   value: string | number;
 }
 
 export const TextField = ({ value }: ITextField) => {
-  const theme = useTheme();
-
   return (
-    <TextContainer>
-      <Typography color={theme.palette.grey[600]}>{value}</Typography>
-    </TextContainer>
+    <MuiTextField
+      disabled
+      size="medium"
+      variant="outlined"
+      fullWidth
+      value={value}
+    />
   );
 };

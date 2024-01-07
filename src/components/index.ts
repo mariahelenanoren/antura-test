@@ -1,3 +1,3 @@
-export * from './layout';
-export * from './pages';
+export * from './pageLayout';
 export * from './errorAlert';
+export * from './pages';
