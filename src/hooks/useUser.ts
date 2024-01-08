@@ -4,8 +4,9 @@ import { useState } from 'react';
 
 import { fetchUser, User } from '~/helpers';
 
+// Custom user data hook to separate business logic from UI components
 export const useUserData = () => {
-  const [user, setUser] = useState<User>();
+  const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 

@@ -1,13 +1,12 @@
-import { GetStaticProps } from 'next';
-
 import { fetchUser, User } from '../helpers';
 import { PageLayout, UserPage } from '~/components';
 
 interface IHome {
-  user: User;
+  user: User | null;
 }
 
-export const getStaticProps = async () => {
+export const getStaticProps = async (): Promise<{ props: IHome }> => {
+  // Fetch user data in getStaticProps to render page at build time
   try {
     const user = await fetchUser();
     return {
@@ -16,7 +15,11 @@ export const getStaticProps = async () => {
       },
     };
   } catch {
-    return { notFound: true };
+    return {
+      props: {
+        user: null,
+      },
+    };
   }
 };
 

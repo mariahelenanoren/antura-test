@@ -5,7 +5,7 @@ interface IDataField extends PropsWithChildren {
   label: string;
 }
 
-export const DataField = ({ label, children }: IDataField) => {
+export const Label = ({ label, children }: IDataField) => {
   return (
     <Grid container item direction="column" xs={12} sm={6} md={4} spacing={1}>
       <Grid item>

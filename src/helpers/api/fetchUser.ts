@@ -1,5 +1,6 @@
 import { IRandomUserResponse } from './types';
 
+// Helper function for communicating with api
 export const fetchUser = async () => {
   const res = await fetch('https://randomuser.me/api/');
 

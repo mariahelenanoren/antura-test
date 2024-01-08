@@ -1,3 +1,4 @@
-export * from './dataField';
-export * from './thumbnail';
-export * from './textField';
+// Components exclusively used by UserPage
+
+export * from './dataGrid';
+export * from './errorAlert';
